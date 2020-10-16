@@ -1,0 +1,168 @@
+script.js-----------------------------------------
+
+// ///get request
+$(document).ready(function(){
+    $('button').click(function(){
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: 'http://localhost:3000/users',
+            success: function(res){
+                console.log('successfully get data from json-server')
+                let users = []              
+                $.each(res, function(i, v){
+                    users += 
+                    `
+                    <div class="user">
+                        <p>Id: ${v.id}</p>
+                        <p>Username: ${v.username}</p>
+                        <p>Password: ${v.password}</p>
+                    </div>
+                    `
+                })
+                $('.container').append(users)                
+                $('img').hide()
+            }
+        })
+    })
+})
+///filter users --> with every keystroke it will filter users and show
+//matching users
+$(document).ready(function(){
+    $('#search').on('keyup', function(){
+        let searchKey = $(this).val().toLowerCase()
+        $('.user').filter(function(){
+            ///we will write logic for getting matching users
+            $(this).toggle($(this).text().toLowerCase().indexOf(searchKey) > -1)
+        })
+    })
+})
+ 
+///post request
+// $(document).ready(function(){
+//     $('button').click(function(){
+//         $.ajax({
+//             type: 'POST',
+//             dataType: 'json',
+//             url: 'http://localhost:3000/users',
+//             data: {
+//                 id: 125,
+//                 username: "dmj123",
+//                 password: "dmj123"
+//               },
+//             success: function(res){
+//                 console.log('successfully added record in json-server')              
+//                 console.log(res)
+//             }
+//         })
+//     })
+// })
+
+
+
+html-----------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="jquery-3.5.1.min.js"></script>
+    <script defer src="script1.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button>get users</button>
+    <!-- <button>post request</button> -->
+    <input type="text" id="search">
+    <div class="container"> 
+        <img src="spinner.gif" alt="">      
+    </div>
+</body>
+</html>
+
+----------------------------------------database
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "json-server1",
+      "author": "typicode1"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1
+    }
+  ],
+  "profile": [
+    {
+      "name": "typicode"
+    },
+    {
+      "name": "typicode123"
+    }
+  ],
+  "users": [
+    {
+      "id": 124,
+      "username": "lavni",
+      "password": "admin123"
+    },
+    {
+      "id": 123456,
+      "username": "manis",
+      "password": "dm1234"
+    },
+    {
+      "id": "126",
+      "username": "priyanshu",
+      "password": "dmj126"
+    },
+    {
+      "id": "125",
+      "username": "anuj",
+      "password": "dmj123"
+    }
+  ]
+}
+
+--------------------------------------------.
+[12:33 PM] Dadaram Manohar Jadhav (Guest)
+    https://jqueryui.com/
+​[12:33 PM] Dadaram Manohar Jadhav (Guest)
+    https://jquerymobile.com/
+[12:33 PM] Dadaram Manohar Jadhav (Guest)
+    jquery sizzle
+​[12:33 PM] Dadaram Manohar Jadhav (Guest)
+    jquery qunit
+----------------------------------------------------------------
+
+--> batch wise
+--> b1 --> different problem statement
+--> b2 --> different problem statement
+
+ 
+
+topic: weather app
+
+ 
+
+front end --> html5+ css3+ javascript + sass+ bootstrap + jquery + rwd
+back end --> not going to design backend
+database --> external api, json-server
+need to design relevent ui
+nav, main section, footer, quick links
+show weather 4-5 important cities (state, country, world)
+showing different icon based on time
+getting current location and show weather
+if using local server (add, delete, update, display)
+if external api accepts post (add, delete, update, display)
+REST api --> https://openweathermap.org/, http://www.weatherapi.com/
+showing temp: degree and fer
